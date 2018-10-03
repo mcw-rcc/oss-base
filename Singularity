@@ -19,16 +19,18 @@ This container runs Open|SpeedShop performance tool.
     apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
         gcc-multilib \
+        git \
+        ca-certificates \
         autoconf \
         libtool \
         m4 \
         libltdl-dev \
         cmake \
-        flex \ 
+        flex \
         bison \
         libxml2-dev \
         python-dev \
-        libz-dev \ 
+        zlib1g-dev \
         binutils \
         binutils-dev \
         libdwarf-dev \
@@ -37,7 +39,9 @@ This container runs Open|SpeedShop performance tool.
         libelf-dev \
         sqlite3 \
         libx11-dev \
-        libxext-dev
+        libxext-dev \
+        libcurl4-openssl-dev \
+        curl
     apt-get clean
 
     # install spack
@@ -45,5 +49,6 @@ This container runs Open|SpeedShop performance tool.
     export PATH=/opt/spack/bin:$PATH
 
     # install openspeedshop
-    spack install openspeedshop +cbtf+cuda+openmpi
+    export FORCE_UNSAFE_CONFIGURE=1
+    spack install openspeedshop +cuda+openmpi
 
